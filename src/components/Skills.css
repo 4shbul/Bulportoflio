@@ -1,0 +1,428 @@
+/* src/components/Skills.css */
+.skills-section {
+    background-color: var(--bg-primary);
+    text-align: center;
+}
+
+.skills-content {
+    display: flex;
+    flex-direction: column; /* Menggunakan kolom untuk konten utama (ikon di atas bar) */
+    align-items: center; /* Pusatkan konten horizontal */
+    gap: 50px; /* Jarak antara ikon dan bar */
+    padding: 50px;
+    max-width: 900px; /* Batasi lebar konten agar tidak terlalu lebar */
+    margin: 0 auto; /* Pusatkan konten */
+}
+
+.skill-icons {
+    display: flex;
+    justify-content: center; /* Pusatkan ikon */
+    flex-wrap: wrap; /* Izinkan ikon untuk wrap ke baris baru jika ruang tidak cukup */
+    gap: 30px; /* Jarak antar ikon */
+    width: 100%; /* Ambil lebar penuh dari parent */
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--accent-main); /* Warna ikon */
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+    flex-basis: 150px; /* Lebar dasar untuk setiap item ikon */
+    flex-grow: 1; /* Biarkan ikon tumbuh jika ada ruang */
+    max-width: 180px; /* Batas lebar maksimum untuk ikon */
+}
+
+.icon-item:hover {
+    transform: translateY(-5px); /* Efek hover */
+}
+
+.icon-item i {
+    font-size: 3.5em; /* Ukuran ikon */
+    margin-bottom: 10px;
+    color: var(--accent-main);
+}
+
+/* --- Skill Bars Styling - Bagian Utama Perbaikan --- */
+.skill-bars-list {
+    display: grid;
+    grid-template-columns: 1fr; /* Satu kolom secara default, akan menjadi baris-baris skill */
+    gap: 12px; /* Jarak antar setiap wrapper skill bar */
+    width: 100%; /* Memastikan daftar bar mengisi lebar */
+}
+
+.skill-bar-wrapper {
+    display: grid;
+    /* Grid template untuk 3 kolom: Nama Skill | Progress Bar | Persentase */
+    /* 180px: lebar tetap untuk nama skill (bisa disesuaikan) */
+    /* 1fr: progress bar akan mengisi sisa ruang yang tersedia */
+    /* auto: lebar untuk persentase akan menyesuaikan isi (misal "95%") */
+    grid-template-columns: 180px 1fr auto;
+    align-items: center; /* Sejajarkan semua item dalam satu baris secara vertikal di tengah */
+    gap: 15px; /* Jarak horizontal antar kolom (nama, bar, persentase) */
+}
+
+.skill-name {
+    text-align: left;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: var(--text-light);
+    white-space: nowrap; /* Mencegah nama skill wrap ke baris berikutnya */
+    overflow: hidden; /* Sembunyikan teks yang overflow */
+    text-overflow: ellipsis; /* Tampilkan elipsis (...) jika teks terlalu panjang */
+    /* Pastikan skill name tidak memanjang terlalu jauh jika ada ruang kosong di kiri */
+    min-width: 0; /* Penting untuk flex/grid item dengan overflow/ellipsis */
+}
+
+.progress-container {
+    background-color: var(--bg-tertiary);
+    border-radius: 5px;
+    height: 7px; /* Membuat bar sedikit lebih tipis untuk tampilan yang lebih ramping */
+    position: relative;
+    overflow: hidden; /* Penting untuk memastikan progress-bar tidak keluar */
+}
+
+.progress-bar {
+    height: 100%; /* Isi penuh tinggi container */
+    background-color: #00BCD4; /* Warna bar (biru cyan, bisa diganti) */
+    border-radius: 5px;
+    /* Lebar diatur via style inline di JSX (oleh GSAP) */
+}
+
+.percentage-value {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text-light);
+    text-align: right; /* Pastikan persentase rata kanan */
+    white-space: nowrap; /* Mencegah persentase wrap ke baris berikutnya */
+}
+
+/* --- Media Queries for Skills Section --- */
+@media (max-width: 992px) {
+    .skills-content {
+        padding: 40px;
+        gap: 40px;
+    }
+    .icon-item i {
+        font-size: 3em;
+    }
+    .skill-bar-wrapper {
+        grid-template-columns: 150px 1fr auto; /* Sesuaikan lebar nama skill untuk layar menengah */
+        gap: 10px;
+    }
+    .skill-name {
+        font-size: 0.9em;
+    }
+    .percentage-value {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-content {
+        padding: 30px;
+        gap: 30px;
+    }
+    .skill-icons {
+        gap: 20px;
+    }
+    .icon-item i {
+        font-size: 2.8em;
+    }
+    .icon-item span {
+        font-size: 1em;
+    }
+    .skill-bar-wrapper {
+        /* Di layar kecil, tumpuk nama skill dan persentase di baris terpisah */
+        grid-template-columns: 1fr; /* Hanya satu kolom */
+        grid-template-rows: auto auto auto; /* Baris untuk Nama, Bar, dan Persentase */
+        gap: 5px; /* Jarak vertikal yang lebih kecil antar baris */
+        text-align: left; /* Default teks rata kiri */
+    }
+    .skill-name {
+        grid-column: 1 / -1; /* Nama skill mengambil seluruh lebar grid */
+        text-align: left; /* Pastikan nama skill tetap rata kiri */
+        margin-bottom: 2px; /* Sedikit jarak di bawah nama */
+    }
+    .progress-container {
+        grid-column: 1 / -1; /* Progress bar mengambil seluruh lebar grid */
+        width: 100%;
+    }
+    .percentage-value {
+        grid-column: 1 / -1; /* Persentase mengambil seluruh lebar grid */
+        text-align: right; /* Persentase rata kanan di bawah bar */
+        margin-top: 2px; /* Sedikit jarak di atas persentase */
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-content {
+        padding: 20px;
+        gap: 25px;
+    }
+    .icon-item i {
+        font-size: 2.2em;
+    }
+    .icon-item span {
+        font-size: 0.9em;
+    }
+    .skill-bar-wrapper {
+        gap: 3px; /* Jarak yang lebih kecil lagi */
+    }
+    .skill-name {
+        font-size: 0.85em;
+    }
+    .progress-container {
+        height: 6px; /* Bar sedikit lebih tipis lagi */
+    }
+    .percentage-value {
+        font-size: 0.7em;
+    }
+}/* src/components/Skills.css */
+.skills-section {
+    background-color: var(--bg-primary);
+    text-align: center;
+}
+
+.skills-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+    /* Tambahan Styling: Efek bayangan dan border pada card-base */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap */
+    border: 2px solid var(--border-color); /* Border yang lebih jelas */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transisi untuk hover */
+}
+
+.skills-content:hover {
+    transform: translateY(-5px); /* Sedikit naik saat dihover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Bayangan lebih kuat saat dihover */
+}
+
+
+.skill-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--accent-main);
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: transform 0.3s ease, color 0.3s ease; /* Transisi untuk efek hover */
+    flex-basis: 150px;
+    flex-grow: 1;
+    max-width: 180px;
+    cursor: pointer; /* Menunjukkan bahwa ini interaktif */
+}
+
+.icon-item:hover {
+    transform: translateY(-10px) scale(1.1); /* Naik lebih tinggi dan membesar */
+    color: var(--text-light); /* Warna teks berubah saat hover */
+}
+
+.icon-item i {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: var(--accent-main); /* Pastikan warna ikon konsisten */
+    transition: color 0.3s ease; /* Transisi warna ikon */
+}
+
+.icon-item:hover i {
+    color: var(--text-light); /* Warna ikon berubah saat hover */
+}
+
+
+/* --- Skill Bars Styling --- */
+.skill-bars-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px; /* Sedikit lebih banyak jarak antar bar */
+    width: 100%;
+}
+
+.skill-bar-wrapper {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 0; /* Sedikit padding vertikal untuk setiap wrapper */
+    border-radius: var(--border-radius-sm);
+    background-color: var(--bg-tertiary); /* Latar belakang untuk setiap bar wrapper */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; /* Transisi hover */
+}
+
+.skill-bar-wrapper:hover {
+    transform: translateX(5px); /* Sedikit bergeser ke kanan saat dihover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Bayangan sedikit lebih kuat */
+}
+
+.skill-name {
+    text-align: left;
+    font-size: 1em; /* Sedikit lebih besar dari 0.95em */
+    font-weight: 600; /* Lebih tebal */
+    color: var(--text-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px; /* Padding dari kiri */
+}
+
+.progress-container {
+    background-color: var(--bg-primary); /* Warna latar belakang container progress bar */
+    border-radius: 5px;
+    height: 8px; /* Sedikit lebih tebal dari 7px */
+    position: relative;
+    overflow: hidden;
+    margin: 0 10px; /* Jarak horizontal untuk progress bar */
+    border: 1px solid var(--accent-dark); /* Border pada progress container */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00BCD4; /* Warna bar */
+    border-radius: 5px;
+    /* Lebar diatur via style inline di JSX (oleh GSAP) */
+    transition: background-color 0.3s ease; /* Transisi warna bar */
+}
+
+/* Optional: ubah warna bar saat dihover jika diinginkan */
+.skill-bar-wrapper:hover .progress-bar {
+    background-color: var(--accent-main); /* Mengubah warna bar saat dihover */
+}
+
+
+.percentage-value {
+    font-size: 0.85em; /* Sedikit lebih besar dari 0.8em */
+    font-weight: 700; /* Lebih tebal */
+    color: var(--text-light);
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 20px; /* Padding dari kanan */
+}
+
+/* --- Media Queries for Skills Section --- */
+@media (max-width: 992px) {
+    .skills-content {
+        padding: 40px;
+        gap: 40px;
+    }
+    .icon-item i {
+        font-size: 3em;
+    }
+    .skill-bar-wrapper {
+        grid-template-columns: 150px 1fr auto;
+        gap: 10px;
+    }
+    .skill-name {
+        font-size: 0.95em;
+        padding-left: 15px;
+    }
+    .percentage-value {
+        font-size: 0.8em;
+        padding-right: 15px;
+    }
+    .progress-container {
+        height: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-content {
+        padding: 30px;
+        gap: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Kurangi bayangan di mobile */
+    }
+    .skills-content:hover {
+        transform: none; /* Nonaktifkan efek naik saat hover di mobile */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    .skill-icons {
+        gap: 20px;
+    }
+    .icon-item i {
+        font-size: 2.8em;
+    }
+    .icon-item span {
+        font-size: 1em;
+    }
+    .icon-item:hover {
+        transform: translateY(-5px) scale(1.05); /* Efek hover lebih kecil di mobile */
+    }
+
+    .skill-bar-wrapper {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        grid-template-rows: auto auto auto;
+        gap: 5px;
+        padding: 10px 0;
+        transform: none; /* Nonaktifkan geser saat hover di mobile */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .skill-bar-wrapper:hover {
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sedikit perubahan bayangan saja */
+    }
+
+    .skill-name {
+        grid-column: 1 / -1;
+        text-align: left;
+        margin-bottom: 2px;
+        padding-left: 15px; /* Sesuaikan padding */
+        font-size: 0.9em;
+    }
+    .progress-container {
+        grid-column: 1 / -1;
+        width: 90%; /* Sedikit lebih kecil agar ada padding samping */
+        margin: 0 auto; /* Pusatkan bar */
+        height: 6px;
+    }
+    .percentage-value {
+        grid-column: 1 / -1;
+        text-align: right;
+        margin-top: 2px;
+        padding-right: 15px; /* Sesuaikan padding */
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-content {
+        padding: 20px;
+        gap: 25px;
+    }
+    .icon-item i {
+        font-size: 2.2em;
+    }
+    .icon-item span {
+        font-size: 0.9em;
+    }
+    .skill-bar-wrapper {
+        gap: 3px;
+        padding: 8px 0;
+    }
+    .skill-name {
+        font-size: 0.85em;
+        padding-left: 10px;
+    }
+    .progress-container {
+        height: 5px;
+        width: 85%; /* Lebih kecil lagi */
+    }
+    .percentage-value {
+        font-size: 0.7em;
+        padding-right: 10px;
+    }
+}

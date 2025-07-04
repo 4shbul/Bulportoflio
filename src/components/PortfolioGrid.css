@@ -1,0 +1,26 @@
+/* src/components/PortfolioGrid.css */
+.portfolio-section {
+    background-color: var(--bg-primary);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Kolom adaptif */
+    gap: 30px; /* Jarak antar item portfolio */
+    margin-top: 50px;
+}
+
+/* Media Queries Portfolio Section */
+@media (max-width: 992px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        gap: 20px;
+    }
+}

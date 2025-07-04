@@ -1,0 +1,157 @@
+/* src/components/About.css */
+.about-section {
+    background-color: var(--bg-primary);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* Jarak antar kolom lebih besar */
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease; /* Hanya transform */
+}
+
+.about-image img:hover {
+    transform: scale(1.02);
+}
+
+/* Placeholder for image if not available */
+.image-placeholder {
+    width: 320px; /* Ukuran placeholder */
+    height: 380px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+    font-size: 1.1em;
+    font-weight: 500;
+    border: 1px dashed var(--text-dark); /* Border putus-putus */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+.about-text-content {
+    flex: 2;
+    min-width: 350px; /* Lebar minimum untuk teks */
+}
+
+.about-text-content h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.about-text-content p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: var(--text-medium);
+}
+
+.experience-card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 35px;
+    padding: 25px;
+    border: none; /* Card base sudah ada border */
+    box-shadow: none; /* Card base sudah ada shadow */
+}
+
+.experience-item {
+    text-align: center;
+}
+
+.experience-number {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--accent-secondary); /* Aksen secondary untuk angka */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.experience-label {
+    font-size: 0.95em;
+    color: var(--text-medium);
+}
+
+.mt-4 {
+    margin-top: 35px;
+}
+
+/* Media Queries About Section */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+    .about-text-content {
+        order: 2;
+        min-width: unset;
+    }
+    .about-image {
+        order: 1;
+    }
+    .about-image img, .image-placeholder {
+        width: 280px;
+        height: 330px;
+    }
+    .experience-card {
+        flex-direction: row; /* Tetap row di tablet */
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        gap: 40px;
+    }
+    .about-image img, .image-placeholder {
+        width: 250px;
+        height: 300px;
+    }
+    .about-text-content h3 {
+        font-size: 1.8em;
+    }
+    .experience-card {
+        flex-direction: column; /* Kolom di mobile */
+        gap: 20px;
+        padding: 20px;
+    }
+    .experience-number {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-image img, .image-placeholder {
+        width: 220px;
+        height: 270px;
+    }
+    .about-text-content h3 {
+        font-size: 1.6em;
+    }
+    .experience-number {
+        font-size: 1.8em;
+    }
+}

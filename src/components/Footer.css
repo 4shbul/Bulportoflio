@@ -1,0 +1,143 @@
+/* src/components/Footer.css */
+.footer-section {
+    background-color: var(--bg-secondary);
+    padding: 60px 0 20px;
+    color: var(--text-medium);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Izinkan elemen wrap ke baris baru */
+    gap: 40px;
+    margin-bottom: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.footer-brand, .footer-links, .footer-social {
+    flex: 1; /* Memberi flexibilitas ukuran */
+    min-width: 200px; /* Batas lebar minimum sebelum wrap */
+    text-align: left; /* Default: rata kiri */
+}
+
+.footer-brand h3 {
+    color: var(--accent-main);
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--text-light);
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--text-medium);
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-main);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: var(--text-medium);
+    font-size: 1.4em;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-main);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    font-size: 0.85em;
+    color: var(--text-dark);
+}
+
+/* Media Queries for Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Stacking elements vertically */
+        align-items: center; /* Center items horizontally */
+        text-align: center; /* Center text within each item */
+        gap: 30px; /* Adjust gap for stacked layout */
+    }
+
+    .footer-brand, .footer-links, .footer-social {
+        min-width: unset; /* Remove min-width restriction */
+        width: 100%; /* Take full width */
+        text-align: center; /* Ensure text is centered */
+    }
+
+    .footer-links ul {
+        display: flex; /* Keep as flex */
+        flex-wrap: wrap; /* Allow links to wrap */
+        justify-content: center; /* Center the links */
+        gap: 15px; /* Spacing between links */
+    }
+
+    .footer-links ul li {
+        margin-bottom: 0; /* Remove vertical margin from list items */
+    }
+
+    .social-icons {
+        justify-content: center; /* Center social icons */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section {
+        padding: 40px 0 15px;
+    }
+    .footer-brand h3 {
+        font-size: 1.8em;
+    }
+    .footer-links h4, .footer-social h4 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    .social-icons a {
+        font-size: 1.2em;
+    }
+    .footer-bottom p {
+        font-size: 0.8em;
+    }
+}
